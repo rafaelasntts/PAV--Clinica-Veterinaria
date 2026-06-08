@@ -37,7 +37,7 @@ class ClienteBusiness(Pessoa):
 class VeterinarioBusiness(Pessoa):
     def __init__(self, nome, crmv, especialidade, telefone):
         super().__init__(nome, telefone)
-        self.__crmv = crmv # Atributo privado do Veterinário
+        self.__crmv = crmv 
         self.especialidade = especialidade
 
     @property

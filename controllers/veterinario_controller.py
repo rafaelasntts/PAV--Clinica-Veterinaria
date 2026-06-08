@@ -1,8 +1,8 @@
 
 from database import engine
 from sqlalchemy.orm import sessionmaker
-from models.entities import Veterinario  # Tabela do banco
-from models.business import VeterinarioBusiness  # Regras OO (como CRF/CRMV)
+from models.entities import Veterinario  
+from models.business import VeterinarioBusiness  
 
 Session = sessionmaker(bind=engine)
 
@@ -12,10 +12,10 @@ class VeterinarioController:
 
     def cadastrar_veterinario(self, nome, crmv, especialidade, telefone):
         try:
-            # 1. Instancia a regra de negócio (aplica validações se houver)
+            
             vet_valido = VeterinarioBusiness(nome, crmv, especialidade, telefone)
             
-            # 2. Transfere para a entidade que o SQLAlchemy joga no banco
+            
             novo_vet = Veterinario(
                 nome=vet_valido.nome,
                 crmv=vet_valido.crmv,
@@ -23,7 +23,7 @@ class VeterinarioController:
                 telefone=vet_valido.telefone
             )
             
-            # 3. Salva no MySQL do XAMPP
+            
             self.session.add(novo_vet)
             self.session.commit()
             return f"Sucesso: Veterinário(a) Dr(a). {vet_valido.nome} cadastrado com sucesso!"

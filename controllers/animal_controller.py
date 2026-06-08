@@ -1,6 +1,6 @@
 from database import engine
 from sqlalchemy.orm import sessionmaker
-from models.entities import Animal  # Puxa direto da entidade do banco
+from models.entities import Animal  
 
 Session = sessionmaker(bind=engine)
 
