@@ -1,16 +1,34 @@
-# teste.py
-from controllers.cliente_controller import ClienteController
+from controllers.animal_controller import AnimalController
+from controllers.consulta_controller import ConsultaController
+from controllers.exame_controller import ExameController
 
-controller = ClienteController()
+animal_ctrl = AnimalController()
+consulta_ctrl = ConsultaController()
+exame_ctrl = ExameController()
 
-print("--- TESTANDO CADASTRO DE CLIENTE ---")
-# Tentando cadastrar um cliente com os dados certinhos
-resultado = controller.cadastrar_cliente(
-    nome="Eshley Silva",
-    cpf="12345678901",  # exatamente 11 números
-    telefone="21999999999",
-    endereco="Rua da Faculdade, 123",
-    email= "eshley@email.com"
+print("--- 1. CADASTRANDO ANIMAL ---")
+res_animal = animal_ctrl.cadastrar_animal(
+    nome="Lutor", especie="Cachorro", raca="viralata", idade=3, sexo="Macho", id_cliente=1
 )
+print(res_animal)
 
-print(resultado)
+print("\n--- 2. AGENDANDO CONSULTA ---")
+res_consulta = consulta_ctrl.agendar_consulta(
+    data_str="15/06/2026",
+    hora_str="14:30",
+    diagnostico="Suspeita de virose",
+    tratamento="Pedir exames de sangue",
+    id_animal=1,
+    id_veterinario=1
+)
+print(res_consulta)
+
+print("\n--- 3. REGISTRANDO EXAME PARA A CONSULTA ---")
+# Vinculamos o exame ao id_consulta=1 que foi gerado no passo anterior
+res_exame = exame_ctrl.cadastrar_exame(
+    nome="Hemograma Completo",
+    descricao="Contagem de plaquetas e hemácias para verificar infecção",
+    valor=85.50,
+    id_consulta=1
+)
+print(res_exame)
