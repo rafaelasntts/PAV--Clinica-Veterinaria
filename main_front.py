@@ -3,6 +3,9 @@ import tkinter as tk
 from tkinter import messagebox
 from cliente_gui import ClinicaClienteApp
 from exame_gui import ClinicaExameApp 
+from animal_gui import ClinicaAnimalApp
+from veterinario_gui import ClinicaVetApp
+from consulta_gui import ClinicaConsultaApp
 
 class MenuPrincipalApp:
     def __init__(self, root):
@@ -52,13 +55,16 @@ class MenuPrincipalApp:
         ClinicaExameApp(nova_janela)
 
     def abrir_animais(self):
-        messagebox.showinfo("Aviso", "Tela de Animais em desenvolvimento!")
+        nova_janela = tk.Toplevel(self.root)
+        ClinicaAnimalApp(nova_janela)
 
     def abrir_vets(self):
-        messagebox.showinfo("Aviso", "Tela de Veterinários em desenvolvimento!")
+        nova_janela = tk.Toplevel(self.root)
+        ClinicaVetApp(nova_janela)
 
     def abrir_consultas(self):
-        messagebox.showinfo("Aviso", "Tela de Consultas em desenvolvimento!")
+        nova_janela = tk.Toplevel(self.root)
+        ClinicaConsultaApp(nova_janela)
 
 
 if __name__ == "__main__":

@@ -186,11 +186,23 @@ class ClinicaExameApp:
             messagebox.showerror("Erro", str(e))
 
     def call_api_post(self):
+        valor_str = self.entry_valor.get().strip()
+
+        if not valor_str:
+            return messagebox.showwarning("Erro de Validação", "Requisito do Sistema: Informe o valor do exame!")
+        
+        try:
+            valor = float(valor_str)
+            if valor <= 0:
+                return messagebox.showwarning("Erro de Validação", " O valor do exame deve ser maior que zero!")
+        except ValueError:
+            return messagebox.showwarning("Erro de Validação", "O valor deve ser um número decimal válido!")
+        
         try:
             data = {
                 "nome": self.entry_nome.get(),
                 "descricao": self.entry_descricao.get(),
-                "valor": float(self.entry_valor.get() or 0),
+                "valor": valor,
                 "id_consulta": int(self.entry_consulta.get() or 0)
             }
             response = requests.post(API_URL, json=data)

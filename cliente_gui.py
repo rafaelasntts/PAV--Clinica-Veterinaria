@@ -196,6 +196,19 @@ class ClinicaClienteApp:
             messagebox.showerror("Erro", str(e))
 
     def call_api_post(self):
+        nome = self.entry_nome.get().strip()
+        telefone = self.entry_telefone.get().strip()
+        email = self.entry_email.get().strip()
+
+        if not nome:
+            return messagebox.showwarning("Erro de Validação", "Requisito do Sistema: O campo Nome é obrigatório!")
+
+        if not telefone and not email:
+            return messagebox.showwarning(
+                "Erro de Validação", 
+                "Requisito do Sistema: O cliente deve possuir pelo menos um meio de contato válido (Telefone ou Email)!"
+            )
+
         try:
             data = {
                 "nome": self.entry_nome.get(),
@@ -217,6 +230,19 @@ class ClinicaClienteApp:
             messagebox.showerror("Erro", str(e))
 
     def call_api_put(self):
+        telefone = self.entry_telefone.get().strip()
+        email = self.entry_email.get().strip()
+        nome = self.entry_nome.get().strip()
+
+        if not nome:
+            return messagebox.showwarning("Erro de Validação", "Requisito do Sistema: O campo Nome é obrigatório!")
+
+        if not telefone and not email:
+            return messagebox.showwarning(
+                "Erro de Validação", 
+                "Requisito do Sistema: Não é permitido atualizar o cliente deixando Telefone e Email vazios!"
+            )
+
         try:
             id_cliente = self.entry_id.get()
             if not id_cliente:
